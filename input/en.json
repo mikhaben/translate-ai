@@ -1,0 +1,46 @@
+{
+  "accountCreationLimitErr": {
+    "description": "Error message for reaching a limit in account creation for specific network.",
+    "message": "Looks like you have reached the account creation limit, please ensure you have at least one active account in the wallet app and try again."
+  },
+  "accountIdWithChecksumLabel": {
+    "description": "Account Id with checksum label",
+    "message": "Account ID with checksum for $chainName$",
+    "placeholders": {
+      "chainName": {
+        "content": "$1",
+        "example": "Hedera Testnet"
+      }
+    }
+  },
+  "dAppManagementPromptMessage": {
+    "description": "DApp Management disconnect session prompt message",
+    "message": "Are you sure you want to disconnect $accountId$ from $dAppName$?",
+    "placeholders": {
+      "accountId": {
+        "content": "$1",
+        "example": "0.0.12345"
+      },
+      "dAppName": {
+        "content": "$2",
+        "example": "My awesome App"
+      }
+    }
+  },
+  "fungibleTokensLabel": {
+    "description": "Fungible tokens group label",
+    "message": "Cryptocurrencies / Fungible Tokens"
+  },
+  "nonFungibleTokensLabel": {
+    "description": "Non-Fungible tokens group label",
+    "message": "NFTs - Non-Fungible Tokens"
+  },
+  "openFromLinkWaiting": {
+    "description": "Message for waiting for extension to open the app",
+    "message": "Extension will open shortly. In case of an error recheck if the URl is valid."
+  },
+  "tokenSearchPlaceholder": {
+    "description": "Token Search placeholder",
+    "message": "Token ID, collection name, or symbol"
+  }
+}
