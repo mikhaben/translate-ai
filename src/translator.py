@@ -6,23 +6,38 @@ from transformers import MarianMTModel, MarianTokenizer
 warnings.filterwarnings("ignore", category=FutureWarning, module="transformers.tokenization_utils_base")
 
 class Translator:
-    def __init__(self, model_name: str) -> None:
-        self.tokenizer = MarianTokenizer.from_pretrained(model_name)
-        self.model = MarianMTModel.from_pretrained(model_name)
-        print(f"Model initialized: {model_name}")
+    def __init__(self, config: dict) -> None:
+        self.models = {
+            lang: {
+                "tokenizer": MarianTokenizer.from_pretrained(model_name),
+                "model": MarianMTModel.from_pretrained(model_name)
+            }
+            for lang, model_name in config.items()
+        }
 
-    def translateStr(self, text: str) -> str:
-        # Tokenize the text
-        inputs = self.tokenizer(text, return_tensors="pt", truncation=True, padding=True)
-        # Generate translation
-        translated = self.model.generate(**inputs)
-        # Decode the translation
-        return self.tokenizer.decode(translated[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
+    def translate_str(self, text: str, target_lang: str) -> str:
+        if not text.strip():
+            return text
 
-    def translate_json(self, json: dict) -> dict:
-        print("Translating JSON...")
-        json_copy = copy.deepcopy(json)
-        for key, val in json_copy.items():
-            val["message"] = self.translateStr(val["message"])
-        return json_copy
-        print("Translation complete")
+        tokenizer = self.models[target_lang]["tokenizer"]
+        model = self.models[target_lang]["model"]
+
+        try:
+            inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+            translated = model.generate(**inputs, max_length=1024)
+            return tokenizer.decode(translated[0], skip_special_tokens=True)
+        except Exception as e:
+            print(f"Translation error for {target_lang}: {e}")
+            return text
+
+    def translate_json(self, data: dict) -> dict:
+        result = {}
+        try:
+            for lang in self.models:
+                result[lang] = {
+                    key: self.translate_str(str(val), lang)
+                    for key, val in data.items()
+                }
+        except Exception as e:
+            print(f"JSON translation error: {e}")
+        return result

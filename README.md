@@ -16,6 +16,10 @@ It stored than in: ~/.cache/huggingface/hub/{model}
     pip freeze > requirements.txt
 ```
 
+### Edit user_config.py
+
+Choose languages from available languages **[fr, en]** or check file **src/config.py**
+
 ### Run
 
 ```bash
