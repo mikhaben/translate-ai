@@ -1,23 +1,18 @@
 # Translate ai
 
-### Note:
-
-We are using huggingface to download models like packages
+Using huggingface to download lightweight models in a local cache.
 It stored than in: ~/.cache/huggingface/hub/{model}
 
 ### Install
 
 ```bash
-    # Conda
-    conda create -n translate-ai python=3.8
-    conda activate translate-ai
-    conda install --file requirements.txt
-    conda env export > environment.yml
-    
-    # Venv and pip
-    python -m venv translate-ai
-    source translate-ai/bin/activate
+    # create environment
+    python -m venv env
+    # activate environment
+    source env/bin/activate
+    # install dependencies
     pip install -r requirements.txt 
+    # freeze dependencies
     pip freeze > requirements.txt
 ```
 

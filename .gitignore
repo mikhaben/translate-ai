@@ -115,3 +115,5 @@ config.ini
 output/
 # Local environment files
 local.env
+env/
+myenv/
