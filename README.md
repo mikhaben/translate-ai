@@ -1,5 +1,8 @@
 # Translate ai
 
+Vue 3 i18n-compatible plugin that automatically translates the primary en.json file into selected languages using pretrained lightweight models.
+
+
 Using huggingface to download lightweight models in a local cache.
 It stored than in: ~/.cache/huggingface/hub/{model}
 
